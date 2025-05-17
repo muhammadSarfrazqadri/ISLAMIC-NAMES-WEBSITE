@@ -7,8 +7,17 @@ document.addEventListener('DOMContentLoaded', () => {
   let namesData = [];
   let currentLang = localStorage.getItem('lang') || 'en';
 
+  // Restore scroll position if available
+  const scrollY = localStorage.getItem('allNamesScroll');
+  if (scrollY) {
+    setTimeout(() => {
+      window.scrollTo(0, parseInt(scrollY, 10));
+      localStorage.removeItem('allNamesScroll');
+    }, 100);
+  }
+
   // Fetch names from JSON
-  fetch('names.json')
+  fetch('json/names.json')
     .then(res => res.json())
     .then(data => {
       namesData = data;
@@ -30,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
       li.innerHTML = `
         <span class="all-name" data-en="${name.name_en}" data-ur="${name.name_ur}">${currentLang === 'ur' ? name.name_ur : name.name_en}</span>
         <span class="all-meaning" data-en="${name.meaning_en}" data-ur="${name.meaning_ur}">${currentLang === 'ur' ? name.meaning_ur : name.meaning_en}</span>
-        <a href="namepage.html?id=${name.id}" class="details-btn" data-en-text="More Details" data-ur-text="مزید تفصیل">${currentLang === 'ur' ? 'مزید تفصیل' : 'More Details'}</a>
+        <a href="htmls/namepage.html?id=${name.id}" class="details-btn" data-en-text="More Details" data-ur-text="مزید تفصیل">${currentLang === 'ur' ? 'مزید تفصیل' : 'More Details'}</a>
       `;
       // Set flag for back navigation
       li.querySelector('.details-btn').addEventListener('click', function() {

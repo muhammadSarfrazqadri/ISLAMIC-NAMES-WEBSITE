@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let nameData = null;
 
   // Fetch names.json and render details
-  fetch('names.json')
+  fetch('json/names.json')
     .then(res => res.json())
     .then(data => {
       nameData = data.find(n => n.id === nameId);
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Direction
     document.documentElement.lang = currentLang === 'en' ? 'en' : 'ur';
     document.documentElement.dir = currentLang === 'en' ? 'ltr' : 'rtl';
+    setBackButton();
   }
 
   // Not found
@@ -81,6 +82,24 @@ document.addEventListener('DOMContentLoaded', () => {
       themeBtn.textContent = currentLang === 'en' ? '🌙' : 'ڈارک موڈ تبدیل کریں';
     }
   });
+
+  // Back button logic
+  function setBackButton() {
+    const backBtn = document.querySelector('.back-btn');
+    if (!backBtn) return;
+    if (localStorage.getItem('fromAllNamesList') === 'true') {
+      backBtn.setAttribute('href', 'htmls/allnames.html');
+      backBtn.onclick = function(e) {
+        e.preventDefault();
+        // Save scroll position
+        if (window.scrollY) localStorage.setItem('allNamesScroll', window.scrollY);
+        window.location.href = 'htmls/allnames.html';
+      };
+    } else {
+      backBtn.setAttribute('href', '../index.html');
+      backBtn.onclick = null;
+    }
+  }
 
   // On page load, set language and theme
   if (langBtn) {

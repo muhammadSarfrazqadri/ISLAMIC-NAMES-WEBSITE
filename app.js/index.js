@@ -212,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setLanguage(currentLang);
 
   // Fetch names from JSON
-  fetch('names.json')
+  fetch('json/names.json')
     .then(response => response.json())
     .then(data => {
       namesData = data;
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </button>
           <div class="accordion-content">
             <p class="meaning" data-en="${name.meaning_en}" data-ur="${name.meaning_ur}">${localStorage.getItem('lang') === 'ur' ? name.meaning_ur : name.meaning_en}</p>
-            <a href="namepage.html?id=${name.id}" class="details-btn" data-en-text="More Details" data-ur-text="مزید تفصیل">${localStorage.getItem('lang') === 'ur' ? 'مزید تفصیل' : 'More Details'}</a>
+            <a href="htmls/namepage.html?id=${name.id}" class="details-btn" data-en-text="More Details" data-ur-text="مزید تفصیل">${localStorage.getItem('lang') === 'ur' ? 'مزید تفصیل' : 'More Details'}</a>
           </div>
         </div>
       `;
@@ -241,6 +241,12 @@ document.addEventListener('DOMContentLoaded', () => {
     addAccordionListeners();
     // Always show More Names button
     moreNamesBtn.style.display = names.length > namesToShow ? 'inline-block' : 'none';
+    // Clear fromAllNamesList flag for home page
+    document.querySelectorAll('.details-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        localStorage.removeItem('fromAllNamesList');
+      });
+    });
   }
 
   // Search functionality
@@ -360,7 +366,7 @@ function renderNames(names) {
         </button>
         <div class="accordion-content">
           <p class="meaning" data-en="${name.meaning_en}" data-ur="${name.meaning_ur}">${localStorage.getItem('lang') === 'ur' ? name.meaning_ur : name.meaning_en}</p>
-          <a href="namepage.html?id=${name.id}" class="details-btn" data-en-text="More Details" data-ur-text="مزید تفصیل">${localStorage.getItem('lang') === 'ur' ? 'مزید تفصیل' : 'More Details'}</a>
+          <a href="htmls/namepage.html?id=${name.id}" class="details-btn" data-en-text="More Details" data-ur-text="مزید تفصیل">${localStorage.getItem('lang') === 'ur' ? 'مزید تفصیل' : 'More Details'}</a>
         </div>
       </div>
     `;
@@ -368,10 +374,16 @@ function renderNames(names) {
   addAccordionListeners();
   // Always show More Names button
   moreNamesBtn.style.display = names.length > namesToShow ? 'inline-block' : 'none';
+  // Clear fromAllNamesList flag for home page
+  document.querySelectorAll('.details-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      localStorage.removeItem('fromAllNamesList');
+    });
+  });
 }
 
 // Fetch names from JSON and render
-fetch('names.json')
+fetch('json/names.json')
   .then(res => res.json())
   .then(data => {
     namesData = data;
@@ -380,7 +392,7 @@ fetch('names.json')
 
 // More Names Button
 moreNamesBtn.addEventListener('click', () => {
-  window.location.href = 'allnames.html';
+  window.location.href = 'htmls/allnames.html';
 });
 
 // Search functionality

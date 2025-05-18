@@ -9,23 +9,25 @@
   <meta property="og:title" content="Islamic Names | اسلامی نام" />
   <meta property="og:description" content="Find beautiful Islamic baby names with meanings in English and Urdu. Explore Muslim names, their origins, and download free books." />
   <link rel="stylesheet" href="Style.css/style.css" />
-  <link rel="stylesheet" href="Style.css/namepage.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 <body>
   <header>
     <nav class="navbar">
-      <div class="logo" data-en="Islamic Names" data-ur="اسلامی نام">Islamic Names</div>
+        <img class="logo" src="./asserts/logo ....webp" alt="islamicNamesLogo" class="logo-img">
       <ul class="nav-links">
+        <li><a href="index.html" data-en="Home" data-ur="گھر">Home</a></li>
         <li><a href="htmls/allnames.html" data-en="Names" data-ur="نام">Names</a></li>
         <li><a href="htmls/books.html" data-en="Books" data-ur="کتب">Books</a></li>
         <li><a href="htmls/about.html" data-en="About" data-ur="تعارف">About</a></li>
-        <li><a href="htmls/contact.html" data-en="Contact" data-ur="رابطہ">Contact</a></li>
+        <li><a href="htmls/contact.html" data-en="Contact" data-ur="رابطہ">Contact Us</a></li>
       </ul>
       <div class="toggles">
         <div class="dropdown lang-dropdown">
           <button id="toggleLang" class="toggle-btn" title="Toggle Language">
-            <i class="fa-solid fa-language"></i> <span>اردو</span> <i class="fa-solid fa-caret-down"></i>
+            <i class="fa-solid fa-language"></i>
+            <span id="langText">Lang</span>
+            <i class="fa-solid fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
             <button class="lang-option" data-lang="en"><i class="fa-solid fa-flag-usa"></i> English</button>
@@ -34,7 +36,9 @@
         </div>
         <div class="dropdown theme-dropdown">
           <button id="toggleTheme" class="toggle-btn" title="Toggle Dark Mode">
-            <i class="fa-solid fa-moon"></i> <span>Theme</span> <i class="fa-solid fa-caret-down"></i>
+            <i class="fa-solid fa-moon"></i> 
+            <span id="themeText" data-en="Theme" data-ur="تھیم">Theme</span> 
+            <i class="fa-solid fa-caret-down"></i>
           </button>
           <div class="dropdown-content">
             <button class="theme-option" data-theme="light"><i class="fa-solid fa-sun"></i> Light</button>
@@ -45,15 +49,17 @@
       </div>
     </nav>
     <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search Names / نام تلاش کریں" />
+      <input type="text" id="searchInput" 
+        placeholder="Search Names" 
+        data-en="Search Names" 
+        data-ur="نام تلاش کریں" />
     </div>
   </header>
   <main id="content" class="main">
     <section class="seo-section">
       <h1>Welcome to Islamic Names</h1>
       <p>Discover a curated collection of <strong>Islamic baby names</strong> for boys and girls, with authentic meanings in English and Urdu. Our website is your trusted resource for <strong>Muslim names</strong>, <strong>Quranic names</strong>, and <strong>modern Islamic names</strong>. Download free books, explore origins, and find the perfect name for your child. <br> <em>Responsive, SEO-optimized, and easy to use for every family.</em></p>
-      <a href="htmls/allnames.html" class="details-btn" style="margin-top:1.2rem;display:inline-block;font-size:1.1rem;"><i class="fa-solid fa-list"></i> View All Names</a>
-    </section>
+</section>
     <section class="books-section">
       <h2><i class="fa-solid fa-book"></i> Islamic Name Books</h2>
       <ul class="books-list">

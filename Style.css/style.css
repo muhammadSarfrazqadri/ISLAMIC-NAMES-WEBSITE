@@ -47,8 +47,41 @@ main, .main {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: var(--white);
+  width: 10rem;
+  height: 4rem;
+}
+
+.logo-img {
+  height: 44px;
+  width: 44px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .logo-text {
+    font-size: 1rem;
+    max-width: 90px;
+    white-space: normal;
+  }
+  .logo-img {
+    height: 34px;
+    width: 34px;
+  }
 }
 
 .language-toggle button {
@@ -103,6 +136,47 @@ main, .main {
 }
 .dropdown-content button:hover {
   background: #e0f2f1;
+}
+
+/* Navbar Dropdown Buttons (Theme & Language) */
+.dropdown .toggle-btn {
+  background-color: var(--white);
+  color: var(--primary-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  min-width: 100px;
+  margin-right: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,77,64,0.10);
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s, transform 0.25s cubic-bezier(.4,2,.6,1), filter 0.2s;
+}
+.dropdown .toggle-btn:focus,
+.dropdown .toggle-btn:hover {
+  background-color: #b2dfdb;
+  color: #00332c;
+  box-shadow: 0 4px 16px rgba(0,77,64,0.18);
+  outline: 2px solid #00796b;
+  transform: scale(1.07);
+  filter: brightness(1.05);
+  animation: lang-bounce 0.35s cubic-bezier(.4,2,.6,1);
+}
+
+@keyframes lang-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.12) translateY(-2px); }
+  60% { transform: scale(0.98) translateY(1px); }
+  100% { transform: scale(1.07); }
+}
+
+.dropdown .toggle-btn i.fa-caret-down {
+  margin-left: 0.3em;
+  font-size: 1em;
 }
 
 /* Hamburger menu */
@@ -513,5 +587,64 @@ body.dark-mode footer {
   .all-names-li .details-btn {
     margin-left: 0;
     margin-top: 0.3rem;
+  }
+}
+
+/* Style for language select dropdown in navbar */
+#toggleLang.toggle-btn {
+  background-color: var(--white);
+  color: var(--primary-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  min-width: 100px;
+  margin-right: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0,77,64,0.10);
+  transition: 
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s,
+    transform 0.25s cubic-bezier(.4,2,.6,1),
+    filter 0.2s;
+  appearance: none;
+  /* Remove custom arrow for native look */
+  background-image: none;
+  padding-right: 1rem;
+  text-align: center;
+}
+#toggleLang.toggle-btn:focus,
+#toggleLang.toggle-btn:hover {
+  background-color: #b2dfdb;
+  color: #00332c;
+  box-shadow: 0 4px 16px rgba(0,77,64,0.18);
+  outline: 2px solid #00796b;
+  transform: scale(1.07);
+  filter: brightness(1.05);
+  animation: lang-bounce 0.35s cubic-bezier(.4,2,.6,1);
+}
+
+@keyframes lang-bounce {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.12) translateY(-2px); }
+  60% { transform: scale(0.98) translateY(1px); }
+  100% { transform: scale(1.07); }
+}
+
+/* Make select arrow look like button caret for consistency */
+#toggleLang.toggle-btn::-ms-expand {
+  display: none;
+}
+#toggleLang.toggle-btn option {
+  color: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+  #toggleLang.toggle-btn {
+    min-width: 70px;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
   }
 }

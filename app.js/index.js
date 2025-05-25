@@ -195,8 +195,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Hamburger menu toggle for mobile
   if (navToggle && mobileNavDropdown) {
-    navToggle.addEventListener("click", function () {
+    navToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
       mobileNavDropdown.classList.toggle("open");
     });
     document.addEventListener("click", function (e) {

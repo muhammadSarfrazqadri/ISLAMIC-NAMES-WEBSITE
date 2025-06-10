@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem("lang", lang);
-    langText.textContent = lang === "ur" ? "اردو" : "English";
+    // langText.textContent = lang === "ur" ? "اردو" : "English";
     if (langIcon) {
       langIcon.className = lang === "ur" ? "fa-solid fa-earth-asia" : "fa-solid fa-language";
     }
@@ -99,7 +99,18 @@ document.addEventListener("DOMContentLoaded", function () {
     isDarkMode = theme === 'dark';
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     document.body.classList.toggle('dark-mode', isDarkMode);
-    if (themeIcon) themeIcon.className = isDarkMode ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+    if (themeIcon) {
+      if (isDarkMode) {
+        themeIcon.className = 'fa-solid fa-moon';
+        if (document.getElementById('themeText')) document.getElementById('themeText').textContent = 'Dark';
+        if (document.getElementById('mobileThemeText')) document.getElementById('mobileThemeText').textContent = 'Dark';
+      } else {
+        themeIcon.className = 'fa-solid fa-sun';
+        if (document.getElementById('themeText')) document.getElementById('themeText').textContent = 'Light';
+        if (document.getElementById('mobileThemeText')) document.getElementById('mobileThemeText').textContent = 'Light';
+      }
+    }
+    if (mobileThemeIcon) mobileThemeIcon.className = themeIcon.className;
     if (typeof syncMobileToggles === 'function') syncMobileToggles();
   }
 
